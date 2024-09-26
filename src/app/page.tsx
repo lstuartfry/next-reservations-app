@@ -17,22 +17,22 @@ export default function Home() {
           <SubHeader>Please select your user</SubHeader>
         </div>
         <div className="mt-12 flex flex-col gap-12 items-center justify-between lg:flex-row">
-          <div className="rounded-lg bg-slate-300 p-3">
+          <div className="rounded-lg bg-emerald-600 px-6 py-3">
             <Link
               className="flex flex-col gap-4 items-center"
               href={paths.clientHome()}
             >
-              <span className="text-lg font-bold">Client</span>
-              <ClientSVG width={180} height={180} />
+              <span className="text-lg font-bold text-white">Client</span>
+              <ClientSVG className="fill-white" width={150} height={150} />
             </Link>
           </div>
-          <div className="rounded-lg bg-slate-300 p-3 ">
+          <div className="rounded-lg bg-emerald-600 px-6 py-3">
             <Link
               className="flex flex-col gap-4 items-center"
               href={paths.providerHome()}
             >
-              <span className="text-lg font-bold">Provider</span>
-              <ProviderSVG width={180} height={180} />
+              <span className="text-lg font-bold text-white">Provider</span>
+              <ProviderSVG className="fill-white" width={150} height={150} />
             </Link>
           </div>
         </div>
