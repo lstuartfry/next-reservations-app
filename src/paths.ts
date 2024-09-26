@@ -5,6 +5,9 @@ export const paths = {
   clientHome() {
     return "/client";
   },
+  clientReservations(providerId: number) {
+    return `/client/reservations/${providerId}`;
+  },
   providerHome() {
     return "/provider";
   },
