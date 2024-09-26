@@ -1,16 +1,40 @@
-import Image from "next/image";
+import Link from "next/link";
+
 import Header from "@/components/ui/headers/header";
 import SubHeader from "@/components/ui/headers/subheader";
+import { paths } from "@/paths";
+import ClientSVG from "public/client.svg";
+import ProviderSVG from "public/provider.svg";
 
 export default function Home() {
   return (
     <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+      <main className="flex flex-col gap-8 row-start-2 items-center">
         <div className="flex flex-col gap-8 items-center">
           <Header className="text-center">
             Welcome to the Reservations Portal!
           </Header>
           <SubHeader>Please select your user</SubHeader>
+        </div>
+        <div className="mt-12 flex flex-col gap-12 items-center justify-between lg:flex-row">
+          <div className="rounded-lg bg-slate-300 p-3">
+            <Link
+              className="flex flex-col gap-4 items-center"
+              href={paths.clientHome()}
+            >
+              <span className="text-lg font-bold">Client</span>
+              <ClientSVG width={180} height={180} />
+            </Link>
+          </div>
+          <div className="rounded-lg bg-slate-300 p-3 ">
+            <Link
+              className="flex flex-col gap-4 items-center"
+              href={paths.providerHome()}
+            >
+              <span className="text-lg font-bold">Provider</span>
+              <ProviderSVG width={180} height={180} />
+            </Link>
+          </div>
         </div>
       </main>
     </div>
