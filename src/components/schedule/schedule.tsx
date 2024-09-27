@@ -112,14 +112,16 @@ export default function Schedule({
         ]}
       />
       <div className="mt-12 flex justify-center">
-        <button
-          className="bg-emerald-600 text-white px-4 py-2 disabled:bg-gray-200 rounded-lg disabled:text-gray-400"
-          type="button"
-          disabled={!selectedDate}
-          onClick={onClick}
-        >
-          Confirm
-        </button>
+        {selectedDate && (
+          <button
+            className="bg-emerald-600 text-white px-4 py-2 disabled:bg-gray-200 rounded-lg disabled:text-gray-400"
+            type="button"
+            disabled={!selectedDate}
+            onClick={onClick}
+          >
+            Confirm
+          </button>
+        )}
       </div>
     </div>
   );

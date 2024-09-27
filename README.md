@@ -1,5 +1,25 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+# Notes
+
+Overall, this was a fun project to work on! I'd like to outline some of the things I did and some of the things I would have liked to do if I had more time.
+
+## Things I did
+
+I bootstrapped this project with `create-next-app`. I'm a big fan of next.js, especially the opinionated way to structuring an applicaiton and building pages for specific routes. This project called for both Client and Provider pages, so I created a `pages` directory with a `client` and `provider` directory inside. I also created a `components` directory for shared components between the two pages. Also, next.js does a great job of setting up your project with TypeScript, eslint and tailwind out of the box, so I didn't have to worry about setting up those tools.
+
+Dealing with time and Date objects is notioriously difficult in JavaScript, so I opted to use the [React Datepicker](https://reactdatepicker.com/) library (which uses the [date-fns](https://date-fns.org/) library under the hood) to help me with some of the date and time calculations. For simplicity sake, I am storing the dates as simple strings, but further optimizations should be made to ensure the times are encoded in UTC.
+
+Regarding the Client and Provider routes, I've chosed to sync these pages with the mocked users I've built in the codebase. In production, these pages would be dynamically generated based on the users in the database, and would use the user's ID to fetch the appropriate data from the API.
+
+Finally, to demonstrate the functionality of clients only being able to select reservation times based on provider availability, I created a list of reservations in the mocked data for the provider. These are hardcoded in the `__mocks__/index.ts` file, but in production, these would be fetched from the API. They are hardcoded for october 15th and october 22nd.
+
+## Things I would have liked to do
+
+The "3 hour" guideline was definitely a challenge, but I embraced it and made some high level decisions early on regarding the limited functionality of this application. First and foremost, I made the call to completely mock the API and the client and provider data. This meant that none of the POST requests would actually work. While I would have liked to implement some sort of confirmation that the forms actually work, I consciously avoided mixing local/application/browser state with expected server state, which should be treated as the source of truth for all client, provider and reservation data.
+
+I also would have liked to implement more robust form validation for the client reservation form and the provider "availability" form. In liu of this, I opted to prevent rendering of the respective confirmation buttons entirely.
+
 ## Getting Started
 
 First, run the development server:
@@ -15,22 +35,3 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
