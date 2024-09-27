@@ -32,7 +32,7 @@ export default function Schedule({
 
   useEffect(() => {
     if (availabilities) {
-      let dates = [];
+      const dates = [];
       for (const availability of availabilities) {
         const date = startOfDay(availability.startTime).toISOString();
         dates.push(date);

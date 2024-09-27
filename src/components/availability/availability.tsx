@@ -7,7 +7,7 @@ import { subDays, format } from "date-fns";
 import SubHeader from "../ui/headers/subheader";
 import createAvailability from "@/actions/provider/create-availability";
 
-export default function Availability({}: {}) {
+export default function Availability() {
   const [startTime, setStartTime] = useState<Date | undefined>();
   const [endTime, setEndTime] = useState<Date | undefined>();
 
