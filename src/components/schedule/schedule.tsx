@@ -3,7 +3,7 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useEffect, useState } from "react";
-import { subDays, getDayOfYear, format } from "date-fns";
+import { subDays, startOfDay } from "date-fns";
 import { Provider } from "@/types";
 
 export default function Schedule({
@@ -12,14 +12,14 @@ export default function Schedule({
   availabilities: Provider["availabilities"];
 }) {
   const [startDate, setStartDate] = useState<Date | undefined>();
-  const [availableDates, setAvailableDates] = useState<number[]>([]);
+  const [availableDates, setAvailableDates] = useState<string[]>([]);
 
   useEffect(() => {
     if (availabilities) {
       let dates = [];
       for (const availability of availabilities) {
-        const day = getDayOfYear(availability.start);
-        dates.push(day);
+        const date = startOfDay(availability.start).toISOString();
+        dates.push(date);
         setAvailableDates(dates);
       }
     }
@@ -32,8 +32,8 @@ export default function Schedule({
   };
 
   const filterDates = (date: Date) => {
-    const dayOfYear = getDayOfYear(format(date, dateFormat));
-    if (availableDates.includes(dayOfYear)) return true;
+    const day = startOfDay(date).toISOString();
+    if (availableDates.includes(day)) return true;
     return false;
   };
 
