@@ -45,7 +45,12 @@ export default function Schedule({
     2/ times already reserved 
   */
   const filterTimes = (time: Date) => {
-    const isWithinBusinessHouse = time.getHours() >= 8 && time.getHours() <= 16;
+    const date = startOfDay(time).toISOString();
+    if (!availableDates.includes(date)) return false;
+
+    const isWithinBusinessHours = time.getHours() >= 8 && time.getHours() <= 16;
+    if (!isWithinBusinessHours) return false;
+
     let isAvailable = true;
 
     // filter out existing reservations
@@ -55,8 +60,7 @@ export default function Schedule({
         const timeIsUnavailable =
           getDate(time) === getDate(date) &&
           getHours(time) === getHours(date) &&
-          getMinutes(time) === getMinutes(date) &&
-          isWithinBusinessHouse;
+          getMinutes(time) === getMinutes(date);
         if (timeIsUnavailable) {
           isAvailable = false;
         }
@@ -66,7 +70,7 @@ export default function Schedule({
   };
 
   return (
-    <div className="flex justify-center mt-4">
+    <div className="flex justify-center mt-12">
       <DatePicker
         className="border-4 px-4 py-2"
         dateFormat={dateFormat}
