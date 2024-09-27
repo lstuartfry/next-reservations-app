@@ -12,9 +12,6 @@ export default async function Page() {
   return (
     <main className="flex flex-col gap-16">
       <Header>Welcome, {client.name}</Header>
-
-      {/* Scheudle */}
-
       <div>
         <SubHeader>Select a provider to create a new reservation</SubHeader>
         <div className="flex flex-col gap-8 mt-4">

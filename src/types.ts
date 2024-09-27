@@ -1,7 +1,7 @@
 export type Reservation = {
   clientId: number;
   providerId: number;
-  date: Date;
+  date: string;
   pending: boolean;
 };
 
@@ -12,9 +12,15 @@ export type Client = {
   reservations?: Reservation[];
 };
 
+type Availability = {
+  start: string;
+  end: string;
+};
+
 export type Provider = {
   id: number;
   name: string;
   imgUrl?: string;
+  availabilities?: Availability[];
   reservations?: Reservation[];
 };
