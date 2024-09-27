@@ -8,7 +8,10 @@ export default async function Page() {
   return (
     <div>
       <Header>Select an available time for {provider.name}</Header>
-      <Schedule availabilities={provider.availabilities} />
+      <Schedule
+        availabilities={provider.availabilities}
+        reservations={provider.reservations}
+      />
     </div>
   );
 }

@@ -3,13 +3,15 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useEffect, useState } from "react";
-import { subDays, startOfDay } from "date-fns";
+import { subDays, startOfDay, getMinutes, getDate, getHours } from "date-fns";
 import { Provider } from "@/types";
 
 export default function Schedule({
   availabilities,
+  reservations,
 }: {
   availabilities: Provider["availabilities"];
+  reservations: Provider["reservations"];
 }) {
   const [startDate, setStartDate] = useState<Date | undefined>();
   const [availableDates, setAvailableDates] = useState<string[]>([]);
@@ -43,7 +45,24 @@ export default function Schedule({
     2/ times already reserved 
   */
   const filterTimes = (time: Date) => {
-    return time.getHours() >= 8 && time.getHours() <= 16;
+    const isWithinBusinessHouse = time.getHours() >= 8 && time.getHours() <= 16;
+    let isAvailable = true;
+
+    // filter out existing reservations
+    if (reservations) {
+      for (const reservation of reservations) {
+        const { date } = reservation;
+        const timeIsUnavailable =
+          getDate(time) === getDate(date) &&
+          getHours(time) === getHours(date) &&
+          getMinutes(time) === getMinutes(date) &&
+          isWithinBusinessHouse;
+        if (timeIsUnavailable) {
+          isAvailable = false;
+        }
+      }
+    }
+    return isAvailable;
   };
 
   return (
