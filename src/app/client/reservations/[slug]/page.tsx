@@ -6,10 +6,8 @@ export default async function Page() {
   const provider = await fetchProvider();
 
   return (
-    <div className="flex flex-col">
-      <Header className="text-center">
-        Select an available time for {provider.name}
-      </Header>
+    <div className="flex flex-col text-center">
+      <Header>Select a time for {provider.name}</Header>
       <Schedule
         availabilities={provider.availabilities}
         reservations={provider.reservations}

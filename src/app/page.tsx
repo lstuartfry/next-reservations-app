@@ -7,14 +7,12 @@ import ProviderSVG from "public/provider.svg";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-8 row-start-2 items-center">
-      <div className="flex flex-col gap-8 items-center">
-        <Header className="text-center">
-          Welcome to the Reservations Portal!
-        </Header>
+    <main className="flex flex-col gap-8 items-center">
+      <div className="flex flex-col gap-4 items-center text-center">
+        <Header>Welcome to Reservations!</Header>
         <SubHeader>Who are you?</SubHeader>
       </div>
-      <div className="mt-12 flex flex-col gap-12 items-center justify-between lg:flex-row">
+      <div className="flex flex-col gap-12 items-center justify-between lg:flex-row">
         <div className="rounded-lg bg-emerald-600 px-6 py-3">
           <Link
             className="flex flex-col gap-4 items-center"
