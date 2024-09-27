@@ -1,6 +1,8 @@
 export type Reservation = {
+  id: number;
   clientId: number;
   providerId: number;
+  providerName?: string;
   date: string;
   pending: boolean;
 };
