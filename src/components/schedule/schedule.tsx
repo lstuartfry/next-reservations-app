@@ -34,7 +34,7 @@ export default function Schedule({
     if (availabilities) {
       let dates = [];
       for (const availability of availabilities) {
-        const date = startOfDay(availability.start).toISOString();
+        const date = startOfDay(availability.startTime).toISOString();
         dates.push(date);
         setAvailableDates(dates);
       }

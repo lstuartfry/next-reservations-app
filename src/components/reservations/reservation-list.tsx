@@ -12,7 +12,8 @@ export default function ReservationList({
   return reservations?.map((reservation) => (
     <div className="flex gap-4 text-left" key={reservation.id}>
       <span key={reservation.id}>
-        {reservation.date} - with {reservation.providerName}
+        {reservation.date} - {reservation.clientName} with{" "}
+        {reservation.providerName}
       </span>
       {reservation.pending && (
         <button

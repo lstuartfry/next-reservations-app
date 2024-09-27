@@ -7,6 +7,11 @@ import { paths } from "@/paths";
 import ProviderSVG from "public/provider.svg";
 import ReservationList from "@/components/reservations/reservation-list";
 
+/*
+Client homepage.
+NOTE - Along with the Provider homepage, this page should also accept a client ID
+which would be used in a top-level query to fetch the appropriate client user data.
+*/
 export default async function Page() {
   const client = await fetchClient();
   const providers = await fetchProviders();

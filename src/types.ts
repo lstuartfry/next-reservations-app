@@ -1,6 +1,7 @@
 export type Reservation = {
   id: number;
   clientId: number;
+  clientName: string;
   providerId: number;
   providerName?: string;
   date: string;
@@ -14,9 +15,9 @@ export type Client = {
   reservations?: Reservation[];
 };
 
-type Availability = {
-  start: string;
-  end: string;
+export type Availability = {
+  startTime: string;
+  endTime: string;
 };
 
 export type Provider = {
