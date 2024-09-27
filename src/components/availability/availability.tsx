@@ -3,31 +3,17 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useEffect, useState } from "react";
-import {
-  subDays,
-  startOfDay,
-  getMinutes,
-  getDate,
-  getHours,
-  format,
-} from "date-fns";
+import { subDays, startOfDay, getMinutes, getDate, getHours } from "date-fns";
 import { Provider } from "@/types";
-import createReservation from "@/actions/client/create-reservation";
-
-type Props = {
-  clientId: number;
-  providerId: number;
-  availabilities: Provider["availabilities"];
-  reservations: Provider["reservations"];
-};
 
 export default function Schedule({
-  clientId,
-  providerId,
   availabilities,
   reservations,
-}: Props) {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+}: {
+  availabilities: Provider["availabilities"];
+  reservations: Provider["reservations"];
+}) {
+  const [startDate, setStartDate] = useState<Date | undefined>();
   const [availableDates, setAvailableDates] = useState<string[]>([]);
 
   useEffect(() => {
@@ -44,7 +30,7 @@ export default function Schedule({
   const dateFormat = "MMMM d, yyyy h:mm aa";
 
   const onChange = (date: Date) => {
-    setSelectedDate(date);
+    setStartDate(date);
   };
 
   const filterDates = (date: Date) => {
@@ -83,24 +69,14 @@ export default function Schedule({
     return isAvailable;
   };
 
-  const onClick = async () => {
-    if (!selectedDate) return;
-
-    await createReservation({
-      clientId,
-      providerId,
-      date: format(selectedDate, dateFormat),
-    });
-  };
-
   return (
-    <div className="flex flex-col justify-center mt-12">
+    <div className="flex justify-center mt-12">
       <DatePicker
         className="border-4 px-4 py-2"
         dateFormat={dateFormat}
         onChange={(date) => onChange(date as Date)}
         placeholderText="Select a date"
-        selected={selectedDate}
+        selected={startDate}
         showTimeSelect
         timeFormat="p"
         timeIntervals={15}
@@ -111,16 +87,6 @@ export default function Schedule({
           { start: subDays(new Date(), 365), end: subDays(new Date(), 0) },
         ]}
       />
-      <div className="mt-12 flex justify-center">
-        <button
-          className="bg-emerald-600 text-white px-4 py-2 disabled:bg-gray-200 rounded-lg disabled:text-gray-400"
-          type="button"
-          disabled={!selectedDate}
-          onClick={onClick}
-        >
-          Confirm
-        </button>
-      </div>
     </div>
   );
 }
